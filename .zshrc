@@ -40,16 +40,6 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-cd_fzf() {
-    _cd=$(find ~ -type d -iname '*' | fzf)
-    if [[ ${#_cd} -ne 0 ]] then
-        cd $_cd
-        # if [[ $? -eq 0 ]] then
-        #     sed -i "$ s/cd_fzf/cd_fzf->$_cd/" ~/.zsh_history
-        # fi
-    fi
-}
-
 alias gll="git log --graph --all --decorate"
 
 alias vi=nvim
@@ -76,7 +66,12 @@ autoload -Uz compinit && compinit
 #   # exec tmux new-session -A -s $"r-$RANDOM"
 # fi
 
-bindkey -s '\C-g' 'cd_fzf\n'
+# bindkey -s '\C-g' 'cd "$(find ~ -type d -iname '*' | fzf)"'
+# bindkey -s '\C-o' 'open_fzf\n'
+bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" | fzf)"\n'
+bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
+
+source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
 
 # Load zsh-syntax-highlighting; should be last.
 source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
