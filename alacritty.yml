@@ -14,16 +14,16 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
@@ -44,9 +44,10 @@
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides. padding:
-  #  x: 0
-  #  y: 0
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
+   x: 1
+   y: 1
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -66,7 +67,7 @@
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
+  opacity: 0.85
 
   # Startup Mode (changes require restart)
   #
@@ -80,7 +81,7 @@
   #startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+title: '1234'
 
   # Allow terminal applications to change Alacritty's window title.
   #dynamic_title: true
@@ -98,25 +99,25 @@
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 10000
 
   # Scrolling distance multiplier.
   #multiplier: 3
 
 # Font configuration
-#font:
+font:
   # Normal (roman) font face
-  #normal:
+  normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: monospace
+    family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -155,7 +156,7 @@
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -177,18 +178,142 @@
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
-  # Use built-in font for box drawing characters.
-  #
-  # If `true`, Alacritty will use a custom built-in font for box drawing
-  # characters (Unicode points 2500 - 259f).
-  #
-  #builtin_box_drawing: true
-
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
+
+# Color schemes
+
+schemes:
+
+  # iterm
+  breeze: &breeze
+    primary:
+      background: '0x232229'
+      foreground: '0xfcfcfc'
+      dim_foreground: '0xeff0f1'
+      bright_foreground: '0xffffff'
+      dim_background: '0x31363b'
+      bright_background: '0x000000'
+    normal:
+      black: '0x232627'
+      red: '0xed1515'
+      green: '0x11d116'
+      yellow: '0xf67400'
+      blue: '0x1d99f3'
+      magenta: '0x9b59b6'
+      cyan: '0x1abc9c'
+      white: '0xfcfcfc'
+    bright:
+      black: '0x7f8c8d'
+      red: '0xc0392b'
+      green: '0x1cdc9a'
+      yellow: '0xfdbc4b'
+      blue: '0x3daee9'
+      magenta: '0x8e44ad'
+      cyan: '0x16a085'
+      white: '0xffffff'
+    dim:
+      black: '0x31363b'
+      red: '0x783228'
+      green: '0x17a262'
+      yellow: '0xb65619'
+      blue: '0x1b668f'
+      magenta: '0x614a73'
+      cyan: '0x186c60'
+      white: '0x63686d'
+
+  # Gruvbox-dark
+  gruvbox-dark: &gruvbox-dark
+    primary:
+      # hard contrast: background = '0x1d2021'
+      background: '0x292929'
+      # soft contrast: background = '0x32302f'
+      foreground: '0xebdbb2'
+
+    # Normal colors
+    normal:
+      black:   '0x282828'
+      red:     '0xcc241d'
+      green:   '0x98971a'
+      yellow:  '0xd79921'
+      blue:    '0x458588'
+      magenta: '0xb16286'
+      # cyan:    '0x689d6a'
+      cyan:    '0xffffff'
+      # white:   '0xa89984'
+      white:   '0xffffff'
+
+    # Bright colors
+    bright:
+      black:   '0x928374'
+      red:     '0xfb4934'
+      green:   '0xb8bb26'
+      yellow:  '0xfabd2f'
+      blue:    '0x83a598'
+      magenta: '0xd3869b'
+      # cyan:    '0x8ec07c'
+      cyan:    '0xffffff'
+      # white:   '0xebdbb2'
+      white:   '0xffffff'
+
+  # Dracula
+  dracula: &dracula
+    primary:
+      background: '#282a36'
+      foreground: '#f8f8f2'
+    cursor:
+      text: CellBackground
+      cursor: CellForeground
+    vi_mode_cursor:
+      text: CellBackground
+      cursor: CellForeground
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+    line_indicator:
+      foreground: None
+      background: None
+    selection:
+      text: CellForeground
+      background: '#44475a'
+    normal:
+      black:   '#000000'
+      red:     '#ff5555'
+      green:   '#50fa7b'
+      yellow:  '#f1fa8c'
+      blue:    '#bd93f9'
+      magenta: '#ff79c6'
+      cyan:    '#8be9fd'
+      white:   '#bfbfbf'
+    bright:
+      black:   '#4d4d4d'
+      red:     '#ff6e67'
+      green:   '#5af78e'
+      yellow:  '#f4f99d'
+      blue:    '#caa9fa'
+      magenta: '#ff92d0'
+      cyan:    '#9aedfe'
+      white:   '#e6e6e6'
+    dim:
+      black:   '#14151b'
+      red:     '#ff2222'
+      green:   '#1ef956'
+      yellow:  '#ebf85b'
+      blue:    '#4d5b86'
+      magenta: '#ff46b0'
+      cyan:    '#59dffc'
+      white:   '#e6e6d1'
+
 # Colors (Tomorrow Night)
-#colors:
+# colors: *dracula
   # Default colors
   #primary:
   #  background: '#1d1f21'
@@ -446,17 +571,14 @@
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-# Offer IPC using `alacritty msg` (unix only)
-#ipc_socket: true
-
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  #double_click: { threshold: 300 }
-  #triple_click: { threshold: 300 }
+  double_click: { threshold: 300 }
+  # triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   #hide_when_typing: false
@@ -534,9 +656,8 @@
 #
 # - `mods` (see key bindings)
 #mouse_bindings:
-#  - { mouse: Right,                 action: ExpandSelection }
-#  - { mouse: Right,  mods: Control, action: ExpandSelection }
-#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
+#  - { mouse: Right,             action: ExpandSelection }
+#  - { mouse: Middle, mode: ~Vi, action: PasteSelection  }
 
 # Key bindings
 #
@@ -605,8 +726,6 @@
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
-#   - CreateNewWindow
-#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
@@ -875,6 +994,3 @@
 
   # Print all received window events.
   #print_events: false
-
-  # Highlight window damage information.
-  #highlight_damage: false

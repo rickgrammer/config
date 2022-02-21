@@ -135,14 +135,3 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-alias vi=nvim
-alias vim=nvim
-alias tm='tmux attach || tmux'
-
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  # bash -exec /home/ashfaq/.tmux/bootstrap.sh
-  bash -exec 'tmux new-session -A -s $"r-$RANDOM"'
-  # exec tmux new-session -A -s $"r-$RANDOM"
-fi
-export FZF_CTRL_R_OPTS='--sort --exact'

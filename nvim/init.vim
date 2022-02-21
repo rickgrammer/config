@@ -1,227 +1,234 @@
-" lua require 'init'
-call plug#begin()
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-obsession'
-" Plug 'psliwka/vim-smoothie'
-Plug 'junegunn/vim-easy-align'
-Plug 'pantharshit00/vim-prisma'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
-" Plug 'justinmk/vim-dirvish'
+lua require 'init'
+"call plug#begin()
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-obsession'
+"" Plug 'psliwka/vim-smoothie'
+"Plug 'junegunn/vim-easy-align'
+"Plug 'pantharshit00/vim-prisma'
+"Plug 'bluz71/vim-nightfly-guicolors'
+"Plug 'morhetz/gruvbox'
+"Plug 'itchyny/lightline.vim'
+"" Plug 'justinmk/vim-dirvish'
 
-" Lua 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'phaazon/hop.nvim'
-call plug#end()
+"" Lua 
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'nvim-telescope/telescope.nvim'
+"Plug 'phaazon/hop.nvim'
+"call plug#end()
 
-inoremap jk <Esc>
-inoremap kj <Esc>
-set clipboard=unnamedplus
+"inoremap jk <Esc>
+"inoremap kj <Esc>
+"set clipboard=unnamedplus
 
-"relative number
-set number 
-set relativenumber
-map <F9> :set relativenumber!<CR>
-" map <F3> :vs<CR>10<C-w>-:Ex<CR>
+""relative number
+"set number 
+"set relativenumber
+"map <F9> :set relativenumber!<CR>
+"" map <F3> :vs<CR>10<C-w>-:Ex<CR>
 
-"constrain gutter space for numbers
-set numberwidth=1
+""constrain gutter space for numbers
+"set numberwidth=1
 
-"natural pane navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+""natural pane navigation
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
-" tabs
-nnoremap <A-1> :tabn 1<CR>
-nnoremap <A-2> :tabn 2<CR>
-nnoremap <A-3> :tabn 3<CR>
-nnoremap <A-4> :tabn 4<CR>
-nnoremap <leader>tc :tabclose<CR>
+"" tabs
+"nnoremap <A-1> :tabn 1<CR>
+"nnoremap <A-2> :tabn 2<CR>
+"nnoremap <A-3> :tabn 3<CR>
+"nnoremap <A-4> :tabn 4<CR>
+"nnoremap <leader>tc :tabclose<CR>
 
-" open netrw
-nnoremap <leader>o :Ex<CR>
-let g:netrw_liststyle=3
+"" open netrw
+"nnoremap <leader>o :Ex<CR>
+"let g:netrw_liststyle=3
 
-"set buffers to switch when unsaved
-set hidden
-set encoding=utf-8
+""set buffers to switch when unsaved
+"set hidden
+"set encoding=utf-8
 
-set termguicolors
-colorscheme nightfly
-hi Visual guifg=#000000 guibg=#FFFFFF gui=none
-hi Normal ctermbg=NONE guibg=NONE
-" let g:nightflyTransparent = 1
-" highlight Normal ctermbg=none
-" highlight NonText ctermbg=none
+"set termguicolors
+"colorscheme nightfly
+"hi Visual guifg=#000000 guibg=#FFFFFF gui=none
+"hi Normal ctermbg=NONE guibg=NONE
+"" let g:nightflyTransparent = 1
+"" highlight Normal ctermbg=none
+"" highlight NonText ctermbg=none
 
-nnoremap Y y$
+"nnoremap Y y$
 
-"MACROS
-let @j='miojk0"iD`i'
-let @k='miOjk0"iD`i'
+""MACROS
+"let @j='miojk0"iD`i'
+"let @k='miOjk0"iD`i'
 
-"change leaderkey 
-let mapleader=" "
+""change leaderkey 
+"let mapleader=" "
 
-"next
-nnoremap <A-j> :bn<CR>
-"previous
-nnoremap <A-k> :bp<CR>
-"switching between next and previous
-nnoremap <A-p> :b#<CR>
+""next
+"nnoremap <A-j> :bn<CR>
+""previous
+"nnoremap <A-k> :bp<CR>
+""switching between next and previous
+"nnoremap <A-p> :b#<CR>
 
-"indent spaces automatically when entering new lines
-set autoindent
+""indent spaces automatically when entering new lines
+"set autoindent
 
-"Override save prompt when navigating from unsaved buffers
-set incsearch
+""Override save prompt when navigating from unsaved buffers
+"set incsearch
 
-"pane splits
-set splitright
-set splitbelow
+""pane splits
+"set splitright
+"set splitbelow
 
-"autofill braces
-inoremap { {}<Esc>i
-inoremap [ []<Esc>i
+""autofill braces
+"inoremap { {}<Esc>i
+"inoremap [ []<Esc>i
 
-"leader key mappings
-nnoremap <leader>w :w!<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>j @j
-nnoremap <leader>k @k
-nnoremap <leader>qh q:
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>br :reg<CR>
-nnoremap <leader>n :nohls<CR>
-" nnoremap <leader>b oimport pdb; pdb.set_trace();<Esc>
+""leader key mappings
+"nnoremap <leader>w :w!<CR>
+"nnoremap <leader>q :q<CR>
+"nnoremap <leader>j @j
+"nnoremap <leader>k @k
+"nnoremap <leader>qh q:
+"nnoremap <leader>bd :bd<CR>
+"nnoremap <leader>br :reg<CR>
+"nnoremap <leader>n :nohls<CR>
+"" nnoremap <leader>b oimport pdb; pdb.set_trace();<Esc>
 
-fu! GitOrAllFiles()
-   if isdirectory('.git')
-       execute 'GFiles'
-   else
-	execute 'Files'
-   endif
-endfunction 
+"fu! GitOrAllFiles()
+"   if isdirectory('.git')
+"       execute 'GFiles'
+"   else
+"	execute 'Files'
+"   endif
+"endfunction 
 
-set nofoldenable
-set foldmethod=manual
+"set nofoldenable
+"set foldmethod=manual
 
-"split terminal down
-nnoremap <leader>t- :sp<CR>:term<CR>
-nnoremap <leader>t] :vs<CR>:term<CR>
-nnoremap <leader>tt :term<CR>
+""split terminal down
+"nnoremap <leader>t- :sp<CR>:term<CR>
+"nnoremap <leader>t] :vs<CR>:term<CR>
+"nnoremap <leader>tt :term<CR>
 
-"split down
-nnoremap <leader>- :sp<CR>
-"split right
-nnoremap <leader>] :vs<CR>
+""split down
+"nnoremap <leader>- :sp<CR>
+""split right
+"nnoremap <leader>] :vs<CR>
 
-"expand tab to spaces
-set expandtab
-"set indent width to 4 spaces
-set shiftwidth=4
-"make tabs 4 spaces wide
-set tabstop=4
+""expand tab to spaces
+"set expandtab
+""set indent width to 4 spaces
+"set shiftwidth=4
+""make tabs 4 spaces wide
+"set tabstop=4
 
-autocmd BufRead,BufNewFile *.vue,*.[tj]s*,*.css,*.prisma
-    \ set shiftwidth=2 |
-    \ set tabstop=2
+"autocmd BufRead,BufNewFile *.vue,*.[tj]s*,*.css,*.prisma
+"    \ set shiftwidth=2 |
+"    \ set tabstop=2
 
-"c++ lib
-" nnoremap <leader>cp i#include<bits/stdc++.h><CR>using namespace std;<CR><CR>int main() {<CR>}<Esc>O
+""c++ lib
+"" nnoremap <leader>cp i#include<bits/stdc++.h><CR>using namespace std;<CR><CR>int main() {<CR>}<Esc>O
 
-set updatetime=800
-set nobackup
-set nowritebackup
-set cmdheight=1
-
-
-"  LIGHTLINE
-let g:lightline = {
-      \ 'colorscheme': 'nightfly',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
-
-" vim path
-nnoremap <leader>e :e $MYVIMRC<CR>
+"set updatetime=800
+"set nobackup
+"set nowritebackup
+"set cmdheight=1
 
 
-" Save session on quitting Vim
-" autocmd VimLeave * call MakeSession()
+""  LIGHTLINE
+"let g:lightline = {
+"      \ 'colorscheme': 'nightfly',
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ],
+"      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'gitbranch': 'FugitiveHead'
+"      \ },
+"      \ }
 
-function! LoadSession()
-  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-  let b:sessionfile = b:sessiondir . "/session.vim"
-  if (filereadable(b:sessionfile) && isdirectory(".git"))
-    exe 'source ' b:sessionfile
-  else
-    echo "No session loaded."
-  endif
-endfunction
-" Restore session on starting Vim
-" autocmd VimEnter * call LoadSession()
-" Start NERDTree when session is available or if commands line args are passed
-
-" store undos across sessions
-if !isdirectory(expand("~/.nvim/undodir"))
-    call mkdir(expand("~/.nvim/undodir", "p"))
-endif
-set undofile
-set undodir=~/.nvim/undodir
-
-" exist out of terminal mode use jk
-tnoremap jk <C-\><C-n>
-
-" Plugged nvim-tree.lua
-    " nnoremap <F3> :NvimTreeToggle<CR>
-    " let g:nvim_tree_show_icons = {
-    "     \ 'git': 0,
-    "     \ 'folders': 0,
-    "     \ 'files': 0,
-    "     \ 'folder_arrows': 0,
-    "     \ }
-    " let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
-    " let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
-    " let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
-    " let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
-" " Unplugged
-
-" Plugged telescope.nvim
-    noremap <C-p> :Telescope find_files<CR>
-    nnoremap <leader>fa :Telescope live_grep<CR>
-    nnoremap <leader>lr :Telescope registers<CR>
-    nnoremap <leader>lc :Telescope colorscheme<CR>
-    :nnoremap <leader>ll :lua require'telescope.builtin'.buffers{}<CR>
-
-    " git
-    nnoremap <leader>lgs :Telescope git_stash<CR>
-    nnoremap <leader>lgb :Telescope git_branches<CR>
-    nnoremap <leader>lgc :Telescope git_commits<CR>
-    nnoremap <leader>lgcc :Telescope git_bcommits<CR>
+"" vim path
+"nnoremap <leader>e :e $MYVIMRC<CR>
 
 
-    " other
-    :nnoremap <leader>p :Telescope treesitter<CR>
-    :nnoremap <leader>pr :Telescope lsp_references<CR>
-" Unplugged
+"" Save session on quitting Vim
+"" autocmd VimLeave * call MakeSession()
 
-" lua require('telescope').load_extension('fzf_native')
+"function! LoadSession()
+"  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+"  let b:sessionfile = b:sessiondir . "/session.vim"
+"  if (filereadable(b:sessionfile) && isdirectory(".git"))
+"    exe 'source ' b:sessionfile
+"  else
+"    echo "No session loaded."
+"  endif
+"endfunction
+"" Restore session on starting Vim
+"" autocmd VimEnter * call LoadSession()
+"" Start NERDTree when session is available or if commands line args are passed
+
+"" store undos across sessions
+"if !isdirectory(expand("~/.nvim/undodir"))
+"    call mkdir(expand("~/.nvim/undodir", "p"))
+"endif
+"set undofile
+"set undodir=~/.nvim/undodir
+
+"" exist out of terminal mode use jk
+"tnoremap jk <C-\><C-n>
+
+"" Plugged nvim-tree.lua
+"    " nnoremap <F3> :NvimTreeToggle<CR>
+"    " let g:nvim_tree_show_icons = {
+"    "     \ 'git': 0,
+"    "     \ 'folders': 0,
+"    "     \ 'files': 0,
+"    "     \ 'folder_arrows': 0,
+"    "     \ }
+"    " let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+"    " let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
+"    " let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+"    " let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+"" " Unplugged
+
+"" Plugged telescope.nvim
+"lua <<EOF
+"  local project_files = function()
+"    local opts = {} -- define here if you want to define something
+"    local ok = pcall(require"telescope.builtin".git_files, opts)
+"    if not ok then require"telescope.builtin".find_files(opts) end
+"  end
+"EOF
+"    noremap <C-p> :Telescope git_files<CR>
+"    nnoremap <leader>fa :Telescope live_grep<CR>
+"    nnoremap <leader>lr :Telescope registers<CR>
+"    nnoremap <leader>lc :Telescope colorscheme<CR>
+"    :nnoremap <leader>ll :lua require'telescope.builtin'.buffers{}<CR>
+
+"    " git
+"    nnoremap <leader>lgs :Telescope git_stash<CR>
+"    nnoremap <leader>lgb :Telescope git_branches<CR>
+"    nnoremap <leader>lgc :Telescope git_commits<CR>
+"    nnoremap <leader>lgcc :Telescope git_bcommits<CR>
+
+
+"    " other
+"    :nnoremap <leader>p :Telescope treesitter<CR>
+"    :nnoremap <leader>pr :Telescope lsp_references<CR>
+"" Unplugged
+
+"" lua require('telescope').load_extension('fzf_native')
 
 " Plugged Coc
     " Don't pass messages to |ins-completion-menu|.
@@ -298,71 +305,71 @@ tnoremap jk <C-\><C-n>
     nnoremap <leader>cr :CocRestart<CR>
 " Unplugged
 
-" Plugged hop
-lua <<EOF
-  require'hop'.setup()
-EOF
-"
+"" Plugged hop
+"lua <<EOF
+"  require'hop'.setup()
+"EOF
+""
 
-" Plugged tree-sitter
-lua <<EOF
-    require'nvim-treesitter.configs'.setup {
-      highlight = {
-        enable = true,
-        -- custom_captures = {
-          -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-          -- ["foo.bar"] = "Identifier",
-        -- },
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-      },
-    }
-    require'nvim-treesitter.configs'.setup {
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-    }
-    require'nvim-treesitter.configs'.setup {
-      indent = {
-        enable = true
-      }
-    }
-EOF
-" Unplugged
+"" Plugged tree-sitter
+"lua <<EOF
+"    require'nvim-treesitter.configs'.setup {
+"      highlight = {
+"        enable = true,
+"        -- custom_captures = {
+"          -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+"          -- ["foo.bar"] = "Identifier",
+"        -- },
+"        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+"        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+"        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+"        -- Instead of true it can also be a list of languages
+"        additional_vim_regex_highlighting = false,
+"      },
+"    }
+"    require'nvim-treesitter.configs'.setup {
+"      incremental_selection = {
+"        enable = true,
+"        keymaps = {
+"          init_selection = "gnn",
+"          node_incremental = "grn",
+"          scope_incremental = "grc",
+"          node_decremental = "grm",
+"        },
+"      },
+"    }
+"    require'nvim-treesitter.configs'.setup {
+"      indent = {
+"        enable = true
+"      }
+"    }
+"EOF
+"" Unplugged
 
-" Plugged fugitive
-    nnoremap <leader>gs :G<CR>
-    nnoremap <leader>gss :Git stash<CR>
-    nnoremap <leader>gsp :Git stash pop<CR>
-    nnoremap <leader>gd :Gdiff<CR>
-    nnoremap <leader>gll :Git log --graph --all --decorate<CR>
-    nnoremap <leader>gbb :Git blame<CR>
-" Unplugged
+"" Plugged fugitive
+"    nnoremap <leader>gs :G<CR>
+"    nnoremap <leader>gss :Git stash<CR>
+"    nnoremap <leader>gsp :Git stash pop<CR>
+"    nnoremap <leader>gd :Gdiff<CR>
+"    nnoremap <leader>gll :Git log --graph --all --decorate<CR>
+"    nnoremap <leader>gbb :Git blame<CR>
+"" Unplugged
 
-" Plugged Hop
-    nnoremap <leader>ff :HopWord<CR>
-" Unplugged
+"" Plugged Hop
+"    nnoremap <leader>ff :HopWord<CR>
+"" Unplugged
 
-" Plugged easy align
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
+"" Plugged easy align
+"    " Start interactive EasyAlign in visual mode (e.g. vipga)
+"    xmap ga <Plug>(EasyAlign)
 
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
-" Unplugged
+"    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"    nmap ga <Plug>(EasyAlign)
+"" Unplugged
 
-set noswapfile
-set nobackup
-set scrolloff=8
+"set noswapfile
+"set nobackup
+"set scrolloff=8
 
-" reload buffer when the content is changed
-set autoread
+"" reload buffer when the content is changed
+"set autoread

@@ -49,6 +49,7 @@ alias eal="vi ~/.config/alacritty/alacritty.yml"
 alias caw="vi ~/.config/awesome/rc.lua"
 alias tm="tmux attach || tmux"
 alias np='tmux new-session -A -s $(python -c "from os.path import abspath; print(abspath(\".\").split(\"/\")[-1])")'
+alias work='cd /home/ashfaq/work/'
 # alias np="tmux new-session -A -s $(python -c 'from os.path import abspath; print(abspath(".").split("/")[-1])')"
 # alias np="tmux new-session -A -s $(cb_pwd)"
 
@@ -73,7 +74,8 @@ bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
 
 source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
 
+EDITOR="$(which nvim)"
+bindkey -e
+
 # Load zsh-syntax-highlighting; should be last.
 source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-EDITOR="$(which nvim)"
