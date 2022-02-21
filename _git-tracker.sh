@@ -6,3 +6,4 @@ if [[ `git status --porcelain` ]]; then
     git push origin master
     echo "pushed changes to master for $(pwd)" >> /tmp/_git-tracker.log
 fi
+
