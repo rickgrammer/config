@@ -76,6 +76,7 @@ source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
 
 EDITOR="$(which nvim)"
 bindkey -e
-
+setopt share_history
 # Load zsh-syntax-highlighting; should be last.
 source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
