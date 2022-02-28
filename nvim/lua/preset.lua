@@ -42,10 +42,11 @@ vim.api.nvim_command('set scrolloff=8')
 
 vim.api.nvim_command('set autoread')
 
-vim.api.nvim_command('autocmd BufRead,BufNewFile *.vue,*.[tj]s*,*.css,*.prisma set shiftwidth=2 | set tabstop=2')
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.vue,*.[tj]s*,*.css,*.prisma,*.lua set shiftwidth=2 | set tabstop=2')
 
 vim.api.nvim_command('set termguicolors')
 vim.api.nvim_command('au ColorScheme * hi Normal ctermbg=none guibg=none | hi Visual guifg=#000000 guibg=#FFFFFF gui=none')
 vim.api.nvim_command('colorscheme nightfly')
 vim.api.nvim_command('set shortmess+=c')
 vim.api.nvim_command('set signcolumn=auto')
+

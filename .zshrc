@@ -50,14 +50,11 @@ alias caw="vi ~/.config/awesome/rc.lua"
 alias tm="tmux attach || tmux"
 alias np='tmux new-session -A -s $(python -c "from os.path import abspath; print(abspath(\".\").split(\"/\")[-1])")'
 alias work='cd /home/ashfaq/work/'
+alias open='exo-open'
 # alias np="tmux new-session -A -s $(python -c 'from os.path import abspath; print(abspath(".").split("/")[-1])')"
 # alias np="tmux new-session -A -s $(cb_pwd)"
 
-# export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*}"'
-#
 
-# . "$HOME/.cargo/env"
-# source ~/.bash_completion/alacritty
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 
@@ -67,8 +64,6 @@ autoload -Uz compinit && compinit
 #   # exec tmux new-session -A -s $"r-$RANDOM"
 # fi
 
-# bindkey -s '\C-g' 'cd "$(find ~ -type d -iname '*' | fzf)"'
-# bindkey -s '\C-o' 'open_fzf\n'
 bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" | fzf)"\n'
 bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
 
@@ -79,4 +74,5 @@ bindkey -e
 setopt share_history
 # Load zsh-syntax-highlighting; should be last.
 source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
 

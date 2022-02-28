@@ -4,7 +4,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use 'tpope/vim-vinegar'
     use 'tpope/vim-fugitive'
-    use 'psliwka/vim-smoothie'
+    -- use 'psliwka/vim-smoothie'
     use 'junegunn/vim-easy-align'
     use 'pantharshit00/vim-prisma'
 

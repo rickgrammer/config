@@ -1,4 +1,6 @@
 lua require 'init'
+hi def link NeojiHeader Number
+hi def link NeojiSubHeader Identifier
 "call plug#begin()
 "Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-commentary'
