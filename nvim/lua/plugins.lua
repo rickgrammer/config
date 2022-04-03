@@ -22,5 +22,7 @@ return require('packer').startup(function(use)
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', { run = 'make' }}
     use 'phaazon/hop.nvim'
+    use 'mfussenegger/nvim-dap'
+    use 'mhartington/formatter.nvim'
 end)
 
