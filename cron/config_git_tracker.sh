@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ `git status --porcelain` ]]; then
-    echo "changes found in $(pwd)"
+    echo "$(date) changes found in $(pwd)"
     git add -A
     git commit -m 'automated'
     git push origin master
