@@ -93,3 +93,29 @@ vim.api.nvim_set_keymap('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoin
 -- Formatter
 vim.api.nvim_set_keymap('n', '<leader>fm', ':CocCommand prettier.forceFormatDocument<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ft', ':FormatWrite<CR>', { noremap = true, silent = true })
+
+
+-- netrw
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = 'netrw',
+  desc = 'Better mappings for netrw',
+  callback = function()
+    local bind = function(lhs, rhs)
+      vim.keymap.set('n', lhs, rhs, {remap = true, buffer = true})
+    end 
+
+    -- edit new file
+    bind('n', '%')
+
+    -- rename file
+    bind('r', 'R')
+    bind('<C-L>', '<C-W><C-L>')
+    bind('<C-H>', '<C-W><C-H>')
+    bind('<C-J>', '<C-W><C-J>')
+    bind('<C-K>', '<C-W><C-K>')
+    bind('<C-v>', 'v')
+  end
+})
+
+-- coc
+vim.api.nvim_set_keymap('n', '<leader>q', ':CocDiagnostics<CR>', { noremap = true, silent = true })

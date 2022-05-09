@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use {'neoclide/coc.nvim', {branch = 'release'}}
+    use {'neoclide/coc.nvim', {run = 'npm ci'}}
     use {'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}}
     use {
       'nvim-telescope/telescope.nvim',
@@ -24,5 +24,7 @@ return require('packer').startup(function(use)
     use 'phaazon/hop.nvim'
     use 'mfussenegger/nvim-dap'
     use 'mhartington/formatter.nvim'
+
+    use 'neovim/nvim-lspconfig'
 end)
 

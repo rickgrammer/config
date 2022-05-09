@@ -187,7 +187,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -276,13 +276,13 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+    awful.key({ modkey,           }, "p", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
         function ()
-            -- awful.client.focus.byidx( 1)
-            awful.client.focus.history.previous()
+            awful.client.focus.byidx( 1)
+            -- awful.client.focus.history.previous()
             if client.focus then
                 client.focus:raise()
             end
@@ -291,7 +291,7 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "k",
         function ()
-            awful.client.focus.byidx(1)
+            awful.client.focus.byidx(-1)
         end,
         {description = "focus previous by index", group = "client"}
     ),
@@ -373,7 +373,7 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "d", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
-    awful.key({ modkey }, "p", function() awful.spawn('rofi -show run') end,
+    awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey }, "l", function() awful.spawn('blurlock') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
@@ -630,8 +630,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Enable window transparency
 awful.spawn("picom")
 -- Restore desktop wallpaper 
--- awful.spawn.with_shell("~/.fehbg")
+awful.util.spawn("~/.fehbg &")
 -- Wifi tray
+
 awful.util.spawn("nm-applet")
 -- Bluetooth tray
 -- awful.spawn("blueman-applet")
