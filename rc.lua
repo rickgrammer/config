@@ -268,8 +268,18 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+local function test_function()
+  local file = io.open("/home/ashfaq/awesome-test.log", "a")
+  pl = require'pl.pretty'
+  file:write("a test is a test\n")
+  file:write(pl.dump(awful.screen.focused().selected_tags))
+  file:close()
+end
+
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+    -- test trigger 
+    awful.key( {modkey}, "t", test_function),
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -279,19 +289,27 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "p", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ modkey,           }, "l",
         function ()
             awful.client.focus.byidx( 1)
-            -- awful.client.focus.history.previous()
             if client.focus then
                 client.focus:raise()
             end
         end,
         {description = "focus next by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "k",
+    awful.key({ modkey,           }, "h",
         function ()
             awful.client.focus.byidx(-1)
+        end,
+        {description = "focus previous by index", group = "client"}
+    ),
+    awful.key({ modkey,           }, "j",
+        function ()
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
         end,
         {description = "focus previous by index", group = "client"}
     ),
@@ -299,9 +317,9 @@ globalkeys = gears.table.join(
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
+    awful.key({ modkey, "Shift"   }, "h", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
+    awful.key({ modkey, "Shift"   }, "l", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
@@ -375,7 +393,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
-    awful.key({ modkey }, "l", function() awful.spawn('blurlock') end,
+    awful.key({ modkey }, "e", function() awful.spawn('blurlock') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey, 'Shift' }, "p", function() awful.spawn('sudo rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"})

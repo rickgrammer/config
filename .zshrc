@@ -79,3 +79,6 @@ setopt share_history
 # Load zsh-syntax-highlighting; should be last.
 source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
+export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/ashfaq/.luarocks/share/lua/5.4/?.lua;/home/ashfaq/.luarocks/share/lua/5.4/?/init.lua'
+export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/ashfaq/.luarocks/lib/lua/5.4/?.so'
+export PATH='/home/ashfaq/.luarocks/bin:/home/ashfaq/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
