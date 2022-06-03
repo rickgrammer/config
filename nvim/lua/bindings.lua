@@ -94,7 +94,6 @@ vim.api.nvim_set_keymap('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoin
 vim.api.nvim_set_keymap('n', '<leader>fm', ':CocCommand prettier.forceFormatDocument<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ft', ':FormatWrite<CR>', { noremap = true, silent = true })
 
-
 -- netrw
 vim.api.nvim_create_autocmd('filetype', {
   pattern = 'netrw',

@@ -1,3 +1,4 @@
+-- ChillCode
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -17,6 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
+local json = require'JSON'
 
 
 -- Custom widgets
@@ -269,14 +272,29 @@ root.buttons(gears.table.join(
 -- }}}
 
 local function test_function()
-  local file = io.open("/home/ashfaq/awesome-test.log", "a")
-  pl = require'pl.pretty'
-  file:write("a test is a test\n")
-  file:write(pl.dump(awful.screen.focused().selected_tags))
-  file:close()
+  -- require'pl.pretty'.dump(awful.screen.focused().selected_tag.name, '/home/ashfaq/awesome-test.log')
+  local f = io.open('/home/ashfaq/a.t.txt', 'a')
+  f:write(awful.screen.focused().selected_tag.name)
+  f:close()
+end
+
+track_table = nil
+local function stop_tracking()
+  if track_table == nil then track_table = {} end
+  table.insert(track_table, {-1, os.time()})
+  save_tracking()
+end
+local function track_tag()
+  local current_tag = awful.screen.focused().selected_tag.name
+  if track_table == nil then
+    track_table = {{current_tag, os.time()}}
+    return
+  end
+  table.insert(track_table, {current_tag, os.time()})
 end
 
 -- {{{ Key bindings
+redshift_temperature = 6500
 globalkeys = gears.table.join(
     -- test trigger 
     awful.key( {modkey}, "t", test_function),
@@ -286,7 +304,19 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "p", awful.tag.history.restore,
+    awful.key({ modkey,           }, "r",  function ()
+      local r_temp
+      if redshift_temperature == 6500 then r_temp = 4500 else r_temp = 6500 end
+      local str = 'redshift -P -O ' .. r_temp
+      awful.spawn.with_shell(str)
+      redshift_temperature = r_temp
+    end,
+              {description = "view next", group = "tag"}),
+    awful.key({ modkey,           }, "p", function ()
+      track_tag()
+      return awful.tag.history.restore()
+    end ,
+    -- awful.key({ modkey,           }, "p", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "l",
@@ -375,8 +405,8 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    --           {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -393,7 +423,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
-    awful.key({ modkey }, "e", function() awful.spawn('blurlock') end,
+    awful.key({ modkey }, "e", function() stop_tracking() awful.spawn('blurlock') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey, 'Shift' }, "p", function() awful.spawn('sudo rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"})
@@ -453,17 +483,26 @@ clientkeys = gears.table.join(
 
 )
 
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
+        -- alter view_only function on all tag objects to track switching
+        -- for tag in awful.screen.focused().tags
+            -- tag.view_only_with_track = function ()
+              -- track logic
+              -- tag.view_only()
+            -- end
+        -- done
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
                         local tag = screen.tags[i]
                         if tag then
+                           track_tag()
                            tag:view_only()
                         end
                   end,
@@ -654,3 +693,67 @@ awful.util.spawn("~/.fehbg &")
 awful.util.spawn("nm-applet")
 -- Bluetooth tray
 -- awful.spawn("blueman-applet")
+
+-- stop tracking before shutdown/reboot/logout
+awesome.connect_signal('startup', function ()
+    track_tag()
+  end
+)
+
+awesome.connect_signal('exit', stop_tracking)
+function save_tracking()
+    local base_path = '/home/ashfaq/tag-tracker/'
+    local today = os.date'%d-%m-%Y'
+    local file_name = base_path .. 'tag.example.' .. today ..'.json'
+    if track_table == nil or #track_table < 2 then
+      return
+    end
+    local track_file = io.open(file_name, 'r')
+    if track_file == nil then io.open(file_name, 'w'):close() end
+    track_file = io.open(file_name, 'r')
+    local track_str = track_file:read'a'
+    track_file:close()
+    local loaded_table;
+    if track_str == nil or #track_str == 0 then
+      loaded_table = {}
+    else
+      loaded_table = json:decode(track_str)
+    end
+
+    local tag_name_index, tag_time_index = 1, 2
+
+    if (loaded_table['last_modified'] and track_table[1]) then
+      if (loaded_table[track_table[1][tag_name_index]]) then
+        loaded_table[track_table[1][tag_name_index]] = loaded_table[track_table[1][tag_name_index]] + track_table[1][tag_time_index] - loaded_table['last_modified']
+      else 
+        loaded_table[track_table[1][tag_name_index]] = track_table[1][tag_time_index] - loaded_table['last_modified']
+      end
+    end
+
+    local i=2
+    while (i <= #track_table) do
+    -- for i=2, #track_table do
+      if loaded_table[track_table[i][tag_name_index]] == nil then
+        loaded_table[track_table[i][tag_name_index]] = track_table[i][tag_time_index] - track_table[i-1][tag_time_index]
+      else
+        loaded_table[track_table[i][tag_name_index]] = loaded_table[track_table[i][tag_name_index]] + track_table[i][tag_time_index] - track_table[i-1][tag_time_index]
+      end
+      if tonumber(track_table[i][1]) < 0 then i = i + 1 end
+      i = i + 1
+    end
+    track_file = io.open(file_name, 'w')
+    -- add last modified time, for the first entry in track_table to track time
+    loaded_table['last_modified'] = os.time()
+    track_file:write(json:encode(loaded_table))
+    track_file:close()
+    track_table = nil
+end
+
+gears.timer {
+    timeout   = 15*60, -- every 15 minutes
+    call_now  = true,
+    autostart = true,
+    callback  = save_tracking
+}
+
+
