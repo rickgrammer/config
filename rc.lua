@@ -272,19 +272,21 @@ root.buttons(gears.table.join(
 -- }}}
 
 local function test_function()
+  printTrackTable()
   -- require'pl.pretty'.dump(awful.screen.focused().selected_tag.name, '/home/ashfaq/awesome-test.log')
-  local f = io.open('/home/ashfaq/a.t.txt', 'a')
-  f:write(awful.screen.focused().selected_tag.name)
-  f:close()
+  -- f:write(awful.screen.focused().selected_tag.name)
+  -- require'pl.pretty'.dump(track_table, '/home/ashfaq/awesome-test.log')
 end
 
 track_table = nil
 local function stop_tracking()
   if track_table == nil then track_table = {} end
-  table.insert(track_table, {-1, os.time()})
+  table.insert(track_table, {"stopped", os.time()})
+  test_function()
   save_tracking()
 end
 local function track_tag()
+  awful.spawn.with_shell('echo tracking >> /home/ashfaq/tag-tracker/bro.log')
   local current_tag = awful.screen.focused().selected_tag.name
   if track_table == nil then
     track_table = {{current_tag, os.time()}}
@@ -423,7 +425,11 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
-    awful.key({ modkey }, "e", function() stop_tracking() awful.spawn('blurlock') end,
+    awful.key({ modkey }, "e", function()
+      stop_tracking()
+      os.execute('blurlock -n')
+      awesome.emit_signal('i3lock-out')
+    end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey, 'Shift' }, "p", function() awful.spawn('sudo rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"})
@@ -694,17 +700,33 @@ awful.util.spawn("nm-applet")
 -- Bluetooth tray
 -- awful.spawn("blueman-applet")
 
--- stop tracking before shutdown/reboot/logout
-awesome.connect_signal('startup', function ()
-    track_tag()
+function printTrackTable ()
+  f = io.open('/home/ashfaq/awesome-test.log', 'a')
+  if not track_table then
+    f:write('<nil>\n')
+    f:close()
+    return
   end
-)
-
+  for i= 1, #track_table, 1 do
+    if (track_table[i]) then
+      f:write(track_table[i][1])
+      f:write(' ')
+      f:write(track_table[i][2])
+      f:write('\n')
+    end
+  end
+  f:close()
+end
+-- start tracking after boot/login
+awesome.connect_signal('startup', track_tag)
+-- stop tracking before shutdown/reboot/logout
 awesome.connect_signal('exit', stop_tracking)
+awesome.connect_signal('i3lock-out', track_tag)
 function save_tracking()
+    awful.spawn.with_shell('echo begin >> /home/ashfaq/tag-tracker/bro.log')
     local base_path = '/home/ashfaq/tag-tracker/'
     local today = os.date'%d-%m-%Y'
-    local file_name = base_path .. 'tag.example.' .. today ..'.json'
+    local file_name = base_path .. 'tagged.' .. today ..'.json'
     if track_table == nil or #track_table < 2 then
       return
     end
@@ -722,31 +744,39 @@ function save_tracking()
 
     local tag_name_index, tag_time_index = 1, 2
 
-    if (loaded_table['last_modified'] and track_table[1]) then
-      if (loaded_table[track_table[1][tag_name_index]]) then
-        loaded_table[track_table[1][tag_name_index]] = loaded_table[track_table[1][tag_name_index]] + track_table[1][tag_time_index] - loaded_table['last_modified']
-      else 
-        loaded_table[track_table[1][tag_name_index]] = track_table[1][tag_time_index] - loaded_table['last_modified']
-      end
-    end
-
     local i=2
     while (i <= #track_table) do
-    -- for i=2, #track_table do
-      if loaded_table[track_table[i][tag_name_index]] == nil then
-        loaded_table[track_table[i][tag_name_index]] = track_table[i][tag_time_index] - track_table[i-1][tag_time_index]
+      -- if contains stopped, tag screen time was spent here, no tag switch
+      local current_tag_name, prev_tag_name = track_table[i][tag_name_index], track_table[i-1][tag_name_index]
+      local current_tag_time, prev_tag_time = track_table[i][tag_time_index], track_table[i-1][tag_time_index]
+      local time_spent = current_tag_time - prev_tag_time
+      if (current_tag_name == 'stopped') then
+        if loaded_table[prev_tag_name] == nil then
+          loaded_table[prev_tag_name] = time_spent
+        else
+          loaded_table[prev_tag_name] = loaded_table[prev_tag_name] + time_spent
+        end
+        i = i + 1
+      elseif loaded_table[current_tag_name] == nil then
+        loaded_table[current_tag_name] = time_spent
       else
-        loaded_table[track_table[i][tag_name_index]] = loaded_table[track_table[i][tag_name_index]] + track_table[i][tag_time_index] - track_table[i-1][tag_time_index]
+        loaded_table[current_tag_name] = loaded_table[current_tag_name] + time_spent
       end
-      if tonumber(track_table[i][1]) < 0 then i = i + 1 end
       i = i + 1
     end
     track_file = io.open(file_name, 'w')
     -- add last modified time, for the first entry in track_table to track time
-    loaded_table['last_modified'] = os.time()
     track_file:write(json:encode(loaded_table))
     track_file:close()
-    track_table = nil
+
+    local last_entry = track_table[#track_table]
+    if last_entry[tag_name_index] == 'stopped' then
+      track_table = nil
+    else
+      track_table = {}
+      table.insert(track_table, last_entry)
+    end
+    awful.spawn.with_shell('echo done >> /home/ashfaq/tag-tracker/bro.log')
 end
 
 gears.timer {
