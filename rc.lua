@@ -282,7 +282,6 @@ track_table = nil
 local function stop_tracking()
   if track_table == nil then track_table = {} end
   table.insert(track_table, {"stopped", os.time()})
-  test_function()
   save_tracking()
 end
 local function track_tag()
@@ -701,7 +700,7 @@ awful.util.spawn("nm-applet")
 -- awful.spawn("blueman-applet")
 
 function printTrackTable ()
-  f = io.open('/home/ashfaq/awesome-test.log', 'a')
+  f = io.open('/home/ashfaq/tag-tracker/awesome-test.log', 'a')
   if not track_table then
     f:write('<nil>\n')
     f:close()
