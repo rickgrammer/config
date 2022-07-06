@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
     use 'mhartington/formatter.nvim'
 
     use 'neovim/nvim-lspconfig'
+    use 'elihunter173/dirbuf.nvim'
 
-    use { "nvim-telescope/telescope-file-browser.nvim" }
 end)
 
