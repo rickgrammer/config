@@ -428,6 +428,7 @@ globalkeys = gears.table.join(
       stop_tracking()
       os.execute('blurlock -n')
       awesome.emit_signal('i3lock-out')
+      awful.spawn.with_shell('asusctl -k off')
     end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey, 'Shift' }, "p", function() awful.spawn('sudo rofi -show run') end,

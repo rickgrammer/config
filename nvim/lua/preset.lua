@@ -36,7 +36,7 @@ vim.api.nvim_command('set undofile')
 vim.api.nvim_command('set undodir=~/.nvim/undodir')
 
 vim.api.nvim_command('set noswapfile')
--- vim.api.nvim_command('set nowrap')
+vim.api.nvim_command('set wrap')
 vim.api.nvim_command('set nobackup')
 vim.api.nvim_command('set scrolloff=8')
 

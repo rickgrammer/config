@@ -89,6 +89,13 @@ vim.api.nvim_set_keymap('n', '<leader>ff', ':lua require\'hop\'.hint_words{}<CR>
 
 -- Dap
 vim.api.nvim_set_keymap('n', '<leader>db', ':lua require\'dap\'.toggle_breakpoint{}<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dc', ':lua require\'dap\'.continue{}<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dr', ':DapToggleRepl<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>de', ':lua require\'dap\'.terminate{}<CR>', { noremap = true, silent = true })
+
+
+-- DapUI
+vim.api.nvim_set_keymap('n', '<leader>du', ':lua require\'dapui\'.toggle()<CR>', { noremap = true, silent = true })
 
 -- Formatter
 vim.api.nvim_set_keymap('n', '<leader>fm', ':CocCommand prettier.forceFormatDocument<CR>', { noremap = true, silent = true })
@@ -118,4 +125,5 @@ vim.api.nvim_create_autocmd('filetype', {
 
 -- coc
 vim.api.nvim_set_keymap('n', '<leader>q', ':CocDiagnostics<CR>', { noremap = true, silent = true })
+
 

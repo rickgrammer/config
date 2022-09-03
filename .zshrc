@@ -67,7 +67,7 @@ autoload -Uz compinit && compinit
 #   # exec tmux new-session -A -s $"r-$RANDOM"
 # fi
 
-bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" | fzf)"\n'
+bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" -not -path \"./\.*\*" | fzf)"\n'
 bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
 
 source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
@@ -87,3 +87,12 @@ export PATH='/home/ashfaq/.luarocks/bin:/home/ashfaq/.local/bin:/usr/local/bin:/
 export PNPM_HOME="/home/ashfaq/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# deno
+export DENO_INSTALL="/home/ashfaq/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+# deno end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
