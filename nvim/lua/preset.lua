@@ -49,4 +49,4 @@ vim.api.nvim_command('au ColorScheme * hi Normal ctermbg=none guibg=none | hi Vi
 vim.api.nvim_command('colorscheme nightfly')
 vim.api.nvim_command('set shortmess+=c')
 vim.api.nvim_command('set signcolumn=auto')
-
+vim.g.nightflyTransparent = true

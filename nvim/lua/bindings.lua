@@ -65,7 +65,7 @@ vim.api.nvim_set_keymap('n', 'ga', ':EasyAlign<CR>', opts)
 
 -- Telescope
 vim.api.nvim_set_keymap('n', '<leader>ll', ":lua require'telescope.builtin'.buffers{}<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-p>', ':lua require\'config-telescope\'.project_files{}<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-p>', ':lua require\'telescope.builtin\'.find_files{}<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>fa', ':lua require\'telescope.builtin\'.live_grep{}<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>lr', ':lua require\'telescope.builtin\'.registers{}<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>lc', ':lua require\'telescope.builtin\'.colorscheme{}<CR>', opts)
