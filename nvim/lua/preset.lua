@@ -50,3 +50,4 @@ vim.api.nvim_command('colorscheme nightfly')
 vim.api.nvim_command('set shortmess+=c')
 vim.api.nvim_command('set signcolumn=auto')
 vim.g.nightflyTransparent = true
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.txt set nowrap')
