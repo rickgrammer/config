@@ -693,7 +693,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Enable window transparency
 awful.spawn("picom")
 -- Restore desktop wallpaper 
-awful.util.spawn("~/.fehbg &")
+awful.spawn.with_shell("feh --bg-scale --randomize Pictures/wallpapers/pbd.jpg")
 -- Wifi tray
 
 awful.util.spawn("nm-applet")

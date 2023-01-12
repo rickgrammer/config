@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
         "nvim-neorg/neorg",
         requires = "nvim-lua/plenary.nvim"
     }
+    use 'suy/vim-context-commentstring'
 
 end)
 
