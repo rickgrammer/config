@@ -179,3 +179,6 @@ keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
 -- keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list.
 -- keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+-- set inlay hint color
+vim.api.nvim_command('hi CocInlayHint guifg=#a4a4a4')
