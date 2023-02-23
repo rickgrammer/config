@@ -69,6 +69,7 @@ autoload -Uz compinit && compinit
 
 bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" -not -path \"./\.*\*" | fzf)"\n'
 bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
+bindkey -s '^[r' '~/config/opacity_toggler.sh\n'
 
 source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
 
