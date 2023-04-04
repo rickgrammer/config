@@ -103,3 +103,8 @@ export BROWSER='/usr/bin/google-chrome-stable'
 
 # java
 export PATH="$HOME/opts/jdk-11.0.17/bin:$PATH"
+
+# android
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
