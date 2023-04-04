@@ -100,3 +100,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # set google chrome as default
 export BROWSER='/usr/bin/google-chrome-stable'
+
+# java
+export PATH="$HOME/opts/jdk-11.0.17/bin:$PATH"

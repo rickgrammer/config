@@ -19,7 +19,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local json = require'JSON'
+-- local json = require'JSON'
+-- print()
 
 
 -- Custom widgets
@@ -425,7 +426,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
               {description = "trigger runnable rofi apps", group = "launcher"}),
     awful.key({ modkey }, "e", function()
-      stop_tracking()
+      -- stop_tracking()
       os.execute('blurlock -n')
       awesome.emit_signal('i3lock-out')
       awful.spawn.with_shell('asusctl -k off')
@@ -693,7 +694,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Enable window transparency
 awful.spawn("picom")
 -- Restore desktop wallpaper 
-awful.spawn.with_shell("feh --bg-scale --randomize Pictures/wallpapers/pbd.jpg")
+awful.spawn.with_shell("feh --bg-scale --randomize Pictures/wallpapers")
 -- Wifi tray
 
 awful.util.spawn("nm-applet")
@@ -718,9 +719,9 @@ function printTrackTable ()
   f:close()
 end
 -- start tracking after boot/login
-awesome.connect_signal('startup', track_tag)
+-- awesome.connect_signal('startup', track_tag)
 -- stop tracking before shutdown/reboot/logout
-awesome.connect_signal('exit', stop_tracking)
+-- awesome.connect_signal('exit', stop_tracking)
 awesome.connect_signal('i3lock-out', track_tag)
 function save_tracking()
     awful.spawn.with_shell('echo begin >> /home/ashfaq/tag-tracker/bro.log')
@@ -779,11 +780,11 @@ function save_tracking()
     awful.spawn.with_shell('echo done >> /home/ashfaq/tag-tracker/bro.log')
 end
 
-gears.timer {
-    timeout   = 15*60, -- every 15 minutes
-    call_now  = true,
-    autostart = true,
-    callback  = save_tracking
-}
+-- gears.timer {
+  --   timeout   = 15*60, -- every 15 minutes
+  --   call_now  = true,
+   --  autostart = true,
+   --  callback  = save_tracking
+-- }
 
 
