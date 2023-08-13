@@ -46,8 +46,8 @@ vim.api.nvim_command('autocmd BufRead,BufNewFile *.vue,*.[tj]s*,*.mjs,*.css,*.pr
 
 vim.api.nvim_command('set termguicolors')
 vim.api.nvim_command('au ColorScheme * hi Normal ctermbg=none guibg=none | hi Visual guifg=#000000 guibg=#FFFFFF gui=none')
+vim.g.nightflyTransparent = true
 vim.api.nvim_command('colorscheme nightfly')
 vim.api.nvim_command('set shortmess+=c')
 vim.api.nvim_command('set signcolumn=auto')
-vim.g.nightflyTransparent = true
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.txt set nowrap')

@@ -108,3 +108,11 @@ export PATH="$HOME/opts/jdk-11.0.17/bin:$PATH"
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+alias k="minikube kubectl --"
+
+# bun completions
+[ -s "/home/ashfaq/.bun/_bun" ] && source "/home/ashfaq/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -246,7 +246,7 @@ awful.screen.connect_for_each_screen(function(s)
             brightness_widget({
               type = 'icon_and_text',
               program = 'brightnessctl',
-              step = 5,    
+              step = 5,
               base = 100,
             }),
             -- net_speed_widget(),
@@ -273,7 +273,9 @@ root.buttons(gears.table.join(
 -- }}}
 
 local function test_function()
-  printTrackTable()
+  awful.spawn('/home/ashfaq/config/opacity_toggler.sh')
+    -- awful.key({ modkey }, "g", function() awful.spawn('rofi -show run') end,
+  -- printTrackTable()
   -- require'pl.pretty'.dump(awful.screen.focused().selected_tag.name, '/home/ashfaq/awesome-test.log')
   -- f:write(awful.screen.focused().selected_tag.name)
   -- require'pl.pretty'.dump(track_table, '/home/ashfaq/awesome-test.log')
