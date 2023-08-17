@@ -53,7 +53,7 @@ alias tmc="tmux -L chai attach || tmux -L chai"
 alias npc='tmux -L chai new-session -A -s $(python -c "from os.path import abspath; print(abspath(\".\").split(\"/\")[-1])")'
 alias work='cd /home/ashfaq/work/'
 alias open='exo-open'
-alias dek="yay -Si"
+alias dek="yay -Ssi"
 # alias np="tmux new-session -A -s $(python -c 'from os.path import abspath; print(abspath(".").split("/")[-1])')"
 # alias np="tmux new-session -A -s $(cb_pwd)"
 

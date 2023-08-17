@@ -27,14 +27,17 @@ return require('packer').startup(function(use)
     use 'mhartington/formatter.nvim'
 
     -- use 'neovim/nvim-lspconfig'
-    use 'elihunter173/dirbuf.nvim'
+    -- use 'elihunter173/dirbuf.nvim'
 
     use {
         "nvim-neorg/neorg",
         requires = "nvim-lua/plenary.nvim"
     }
     use 'suy/vim-context-commentstring'
-
+    use {
+      'stevearc/oil.nvim',
+      config = function() require('oil').setup() end
+    }
 end)
 
 

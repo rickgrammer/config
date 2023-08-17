@@ -9,5 +9,7 @@ require('config-dap')
 require('config-coc')
 -- require('config-lsp')
 require('config-formatter')
+require('config-oil')
+
 -- require('config-neorg')
 
