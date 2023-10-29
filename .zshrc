@@ -18,7 +18,7 @@ parse_git_branch() {
 setopt PROMPT_SUBST
 
 # PS1="%{%F{yellow}%}%n%{%f%}@%{%F{blue}%}%m %{%F{white}%}%~%{%F{green}%}$%f%}%  "
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %F{cyan}%n@%m%f %F{white}%~%f%F{green}$(parse_git_branch)%f $ '
+PROMPT='%(?.%F{green}√.%F{red}?%?)%f %F{cyan}%n@%m%f %F{white}%~%f%F{green}$(parse_git_branch) $(node --version)%f $ '
 
 # autoload -Uz vcs_info
 # precmd() { vcs_info }
@@ -51,9 +51,6 @@ alias tm="tmux attach || tmux"
 alias np='tmux new-session -A -s $(python -c "from os.path import abspath; print(abspath(\".\").split(\"/\")[-1])")'
 alias tmc="tmux -L chai attach || tmux -L chai"
 alias npc='tmux -L chai new-session -A -s $(python -c "from os.path import abspath; print(abspath(\".\").split(\"/\")[-1])")'
-alias work='cd /home/ashfaq/work/'
-alias open='exo-open'
-alias dek="yay -Si"
 # alias np="tmux new-session -A -s $(python -c 'from os.path import abspath; print(abspath(".").split("/")[-1])')"
 # alias np="tmux new-session -A -s $(cb_pwd)"
 
@@ -100,19 +97,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # set google chrome as default
 export BROWSER='/usr/bin/google-chrome-stable'
+alias k="kubectl"
+export TERM=xterm-256color
+alias python=python3
 
-# java
-export PATH="$HOME/opts/jdk-11.0.17/bin:$PATH"
-
-# android
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-alias k="minikube kubectl --"
-
-# bun completions
-[ -s "/home/ashfaq/.bun/_bun" ] && source "/home/ashfaq/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

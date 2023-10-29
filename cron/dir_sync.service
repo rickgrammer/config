@@ -1,0 +1,10 @@
+[Unit]
+Description=Config Dir Sync
+After=network.target
+
+[Service]
+ExecStart=/home/ashfaq/config/cron/dir_sync.sh >> /var/log/dir_sync.log 2>&1
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
