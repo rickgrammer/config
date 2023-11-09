@@ -102,3 +102,4 @@ export TERM=xterm-256color
 alias python=python3
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=$PATH:/usr/local/go/bin
