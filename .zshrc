@@ -18,7 +18,7 @@ parse_git_branch() {
 setopt PROMPT_SUBST
 
 # PS1="%{%F{yellow}%}%n%{%f%}@%{%F{blue}%}%m %{%F{white}%}%~%{%F{green}%}$%f%}%  "
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %F{cyan}%n@%m%f %F{white}%~%f%F{green}$(parse_git_branch) $(node --version)%f $ '
+PROMPT='%(?.%F{green}√.%F{red}?%?)%f %F{cyan}%n@%m%f %F{white}%~%f%F{green}$(parse_git_branch) %f$ '
 
 # autoload -Uz vcs_info
 # precmd() { vcs_info }
@@ -55,42 +55,16 @@ alias npc='tmux -L chai new-session -A -s $(python -c "from os.path import abspa
 # alias np="tmux new-session -A -s $(cb_pwd)"
 
 
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit && compinit
-
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && [[ $sourced -eq 0 ]] ; then
-#   # bash -exec /home/ashfaq/.tmux/bootstrap.sh
-#   bash -exec 'tmux new-session -A -s $"r-$RANDOM"'
-#   # exec tmux new-session -A -s $"r-$RANDOM"
-# fi
-
-bindkey -s '\C-g' 'cd "$(find ~ -type d -iname \"*\" -not -path \"./\.*\*" | fzf)"\n'
-bindkey -s '\C-o' 'nvim "$(find ~ -type f -iname \"*\" | fzf)"\n'
-bindkey -s '^[r' '~/config/opacity_toggler.sh\n'
-
-source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh
-
 EDITOR="$(which nvim)"
-export LANG="en_US.UTF-8"
-bindkey -e
 setopt share_history
-# Load zsh-syntax-highlighting; should be last.
-source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/ashfaq/.luarocks/share/lua/5.4/?.lua;/home/ashfaq/.luarocks/share/lua/5.4/?/init.lua'
-export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/ashfaq/.luarocks/lib/lua/5.4/?.so'
-export PATH='/home/ashfaq/.luarocks/bin:/home/ashfaq/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
-
-# pnpm
-export PNPM_HOME="/home/ashfaq/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-
+#export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/ashfaq/.luarocks/share/lua/5.4/?.lua;/home/ashfaq/.luarocks/share/lua/5.4/?/init.lua'
+#export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/ashfaq/.luarocks/lib/lua/5.4/?.so'
+#export PATH='/home/ashfaq/.luarocks/bin:/home/ashfaq/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
 # deno
 export DENO_INSTALL="/home/ashfaq/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 # deno end
-
+#
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -101,5 +75,10 @@ alias k="kubectl"
 export TERM=xterm-256color
 alias python=python3
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH=$PATH:/usr/local/go/bin
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(fzf --zsh)"
+# Load zsh-syntax-highlighting; should be last.
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
