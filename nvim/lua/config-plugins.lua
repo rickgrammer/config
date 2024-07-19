@@ -1,7 +1,7 @@
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"markdown", "go", "lua", "rust", "tsx", "tmux", "bash", "html", "json", "prisma", "typescript", "python", "yaml", "vimdoc"},
+  ensure_installed = {"markdown", "go", "lua", "rust", "tsx", "tmux", "bash", "html", "json", "prisma", "typescript", "python", "yaml", "vimdoc", "css"},
   highlight = {
     enable = true,
     -- custom_captures = {
