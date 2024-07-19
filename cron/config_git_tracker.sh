@@ -4,6 +4,6 @@ if [[ `git status --porcelain` ]]; then
     git add -A
     git commit -m 'automated'
     git push origin master
-    echo "pushed changes to master for $(pwd)"
+    echo "pushed changes to $(git branch --show-current) for $(pwd)"
 fi
 
