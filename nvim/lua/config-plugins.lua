@@ -332,7 +332,16 @@ require("mason-lspconfig").setup_handlers {
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
+        if server_name == 'rust_analyzer' then
+          require("lspconfig")[server_name].setup {
+            on_attach = function(client, bufnr)
+              vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+            end
+          }
+        else
+          require("lspconfig")[server_name].setup {}
+        end
+        -- require("lspconfig")[server_name].setup {}
     end,
 }
 
