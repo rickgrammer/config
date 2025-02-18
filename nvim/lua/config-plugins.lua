@@ -66,15 +66,14 @@ require('lualine').setup {
 -- lsp setup
 
 -- Setup language servers.
-local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+-- local lspconfig = require('lspconfig')
+-- lspconfig.pyright.setup {}
+-- lspconfig.rust_analyzer.setup {
+--   -- Server-specific settings. See `:help lspconfig-setup`
+--   settings = {
+--     ['rust-analyzer'] = {},
+--   },
+-- }
 
 
 -- Global mappings.
@@ -324,7 +323,7 @@ require'mason'.setup()
 -- mason-lspconfig
 
 require("mason-lspconfig").setup {
-  ensure_installed = { "gopls", "tsserver", "rust_analyzer", "lua_ls", "pyright"},
+  ensure_installed = { "gopls", "ts_ls", "rust_analyzer", "lua_ls", "pyright"},
 }
 
 require("mason-lspconfig").setup_handlers {

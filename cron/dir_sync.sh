@@ -17,6 +17,6 @@ destination_dir="/Users/ashfaqrahman/.config/nvim"
 
 # while fswatch /Users/ashfaqrahman/config/nvim; do
 fswatch -0 "/Users/ashfaqrahman/config/nvim" | while read -d "" event; do
-    rsync -avz /Users/ashfaqrahman/config/nvim/ /Users/ashfaqrahman/.config/nvim
+    rsync -av /Users/ashfaqrahman/config/nvim/ /Users/ashfaqrahman/.config/nvim
 done
 
