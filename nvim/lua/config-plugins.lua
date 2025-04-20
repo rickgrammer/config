@@ -1,5 +1,6 @@
 
 -- treesitter
+require("nvim-treesitter.install").prefer_git = true
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {"markdown", "go", "lua", "rust", "tsx", "tmux", "bash", "html", "json", "prisma", "typescript", "python", "yaml", "vimdoc", "css"},
   highlight = {
@@ -148,8 +149,6 @@ require("oil").setup({
   skip_confirm_for_simple_edits = true,
   -- Deleted files will be removed with the trash_command (below).
   delete_to_trash = false,
-  -- Change this to customize the command used when deleting to trash
-  trash_command = "trash-put",
   -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
   prompt_save_on_select_new_entry = true,
   -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
