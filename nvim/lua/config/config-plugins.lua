@@ -1,6 +1,6 @@
 
 -- treesitter
-require("nvim-treesitter.install").prefer_git = true
+require"nvim-treesitter.install".prefer_git = true
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {"markdown", "go", "lua", "rust", "tsx", "tmux", "bash", "html", "json", "prisma", "typescript", "python", "yaml", "vimdoc", "css"},
   highlight = {
@@ -335,6 +335,30 @@ require("mason-lspconfig").setup_handlers {
             on_attach = function(client, bufnr)
               vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
             end
+          }
+        elseif server_name == 'lua_ls' then
+          require("lspconfig")[server_name].setup {
+            settings = {
+              Lua = {
+                runtime = {
+                  -- Tell the language server which version of Lua you're using (most likely LuaJIT for Neovim)
+                  version = 'LuaJIT',
+                  path = vim.split(package.path, ';'),
+                },
+                diagnostics = {
+                  -- Get the language server to recognize the `vim` global
+                  globals = {'vim'},
+                },
+                workspace = {
+                  -- Make the server aware of Neovim runtime files
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+                telemetry = {
+                  enable = false,
+                },
+              },
+            },
           }
         else
           require("lspconfig")[server_name].setup {}
