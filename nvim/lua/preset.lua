@@ -52,3 +52,7 @@ vim.api.nvim_command('colorscheme nightfly')
 vim.api.nvim_command('set shortmess+=c')
 vim.api.nvim_command('set signcolumn=auto')
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.txt set nowrap')
+
+vim.o.termguicolors = true
+vim.cmd("set t_ZH=\\e[3m")
+vim.cmd("set t_ZR=\\e[23m")
