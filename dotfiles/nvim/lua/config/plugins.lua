@@ -47,4 +47,9 @@ return {
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
+
+  {
+    "echasnovski/mini.nvim",
+    version = '*', -- use main branch for latest development, or remove for stable releases
+  },
 }

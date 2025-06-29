@@ -20,7 +20,7 @@
     //  "power-profiles-daemon",
     //  "cpu",
     //  "memory",
-        "temperature",
+    //  "temperature",
     //  "keyboard-state",
         "battery",
         "battery#bat2",
