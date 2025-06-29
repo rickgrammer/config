@@ -1,0 +1,51 @@
+# This is a basic Wofi configuration for fuzzy app launching.
+
+# Mode:
+# "drun" is for displaying applications registered in your desktop environment.
+# This automatically handles .desktop files.
+mode=drun
+
+# Search Options:
+
+matching=fuzzy
+insensitive=true
+
+# Show hidden files/applications.
+show_hidden=false
+
+# Allow sorting results by most recently used.
+# Requires systemd-journald to be running and collecting activity.
+allow_images=true # Allow display of app icons
+allow_markup=false # Prevent parsing pango markup in results (security/stability)
+
+# Appearance Options (can also be in style.css)
+# Prompt text (what appears before the input field)
+prompt=Run
+
+# Maximum number of lines to show in the results list.
+# A higher number means more scrolling, but more visibility.
+lines=10
+
+# Maximum number of columns (for grid layout in other modes)
+columns=1
+
+# Scrollbar visibility: 'always', 'never', 'automatic'
+# automatic is usually good.
+scroll=automatic
+
+key_close=Control+c
+
+
+key_up = Control+p
+key_down = Control+n
+key_exit = Control+c
+# Input history:
+# Store search history so previous searches are remembered.
+# Enable if you want this, otherwise comment out or set to false.
+# history=true
+
+# Password mode (for specific uses, typically not for app launcher)
+# password=false
+
+# Filter for the 'drun' mode to include only applications
+# type=drun

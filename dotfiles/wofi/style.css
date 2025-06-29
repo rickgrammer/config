@@ -1,0 +1,57 @@
+/* Wofi Clean & Minimal Dark Theme */
+
+/* Overall Window */
+window {
+    background-color: rgba(30, 30, 30, 0.9); /* Dark background, slightly transparent */
+    border: 2px solid rgba(100, 100, 100, 0.7); /* Subtle border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 15px; /* Spacing inside the window */
+}
+
+/* Input Field */
+#input {
+    background-color: rgba(45, 45, 45, 0.9); /* Slightly lighter dark for input */
+    border: 1px solid #555555; /* Darker border */
+    border-radius: 8px; /* Rounded corners for input */
+    padding: 10px; /* Padding inside the input field */
+    margin-bottom: 10px; /* Space between input and list */
+    color: #dddddd; /* Text color */
+    font-size: 16px;
+}
+
+/* Scrollable Area */
+#scroll {
+    border: none; /* No border for the scroll area */
+    background-color: transparent;
+}
+
+/* Inner Box (contains all entries) */
+#inner-box {
+    background-color: transparent;
+}
+
+/* Individual Entry */
+#entry {
+    padding: 8px 10px; /* Padding for each item */
+    margin: 3px 0; /* Vertical spacing between items */
+    border-radius: 6px; /* Rounded corners for entries */
+    background-color: transparent; /* Default transparent background */
+    color: #cccccc; /* Default text color */
+}
+
+/* Selected Entry */
+#entry:selected {
+    background-color: rgba(60, 120, 180, 0.7); /* A pleasing blue for selected item */
+    color: #ffffff; /* White text for selected item */
+    font-weight: bold; /* Make selected text bold */
+}
+
+/* Text within entries */
+#text {
+    padding: 0; /* No extra padding for text within entry */
+}
+
+/* Image within entries (if applicable) */
+#img {
+    margin-right: 10px; /* Space between icon and text */
+}
