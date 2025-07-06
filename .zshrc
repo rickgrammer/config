@@ -85,4 +85,6 @@ source /home/ashfaq/work/bucket/zsh-syntax-highlighting/zsh-syntax-highlighting.
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
 export WEZTERM_CONFIG_FILE=/home/ashfaq/.config/wezterm/init.lua
-# some
+
+# Load secret env variable
+source ~/.SECRETS

@@ -29,7 +29,7 @@ buttgn {
 
 #workspaces button.urgent {
     background-color: #FDDE8C;
-    text-color: black;
+    color: black;
 }
 
 #workspaces button.active {
