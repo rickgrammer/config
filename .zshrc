@@ -88,3 +88,11 @@ export WEZTERM_CONFIG_FILE=/home/ashfaq/.config/wezterm/init.lua
 
 # Load secret env variable
 source ~/.SECRETS
+
+export GOBIN="$HOME/go/bin"
+export PATH="$GOBIN:$PATH"
+
+# don't break neovim "yank to system clipboard" when using both gnome & hyprland
+if [ -S /run/user/$(id -u)/wayland-0 ]; then
+    export WAYLAND_DISPLAY=wayland-0
+fi

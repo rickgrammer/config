@@ -15,4 +15,15 @@ M.oil_path_or_default_grep = function()
   end
 end
 
+
+-- Copy Oil's current directory to system clipboard
+M.copy_oil_dir_to_clip =  function ()
+  local dir = oil.get_current_dir()
+  if dir then
+    vim.fn.setreg("+", dir)   -- + register = system clipboard
+    print("Copied oil directory: " .. dir)
+  else
+    print("Not in an oil buffer!")
+  end
+end
 return M
