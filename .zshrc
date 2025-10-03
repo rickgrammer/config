@@ -96,3 +96,4 @@ export PATH="$GOBIN:$PATH"
 if [ -S /run/user/$(id -u)/wayland-0 ]; then
     export WAYLAND_DISPLAY=wayland-0
 fi
+alias open=nautilus
